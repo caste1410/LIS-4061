@@ -1,4 +1,4 @@
-import tools
+import toolsForSDES as tools
 
 def makeEncrytion(plaintext, key):
     firstKey, secondKey = tools.makeSubKeys(key)
