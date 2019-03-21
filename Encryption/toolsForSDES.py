@@ -73,5 +73,9 @@ def switch(frOutput):
 def rowTransposition(plaintext, key):
   matrix = list(zip(*[list(plaintext[i:i+len(key)]) for i in range(0, len(plaintext), len(key))]))
   return "".join(map(lambda x : "".join(matrix[int(x)-1]), key))
+
+def rowTranspositionInnverse(cyphertext, key):
+  matrix = [[key[i//len(key)]] + list(cyphertext[i:i+len(key)]) for i in range(0, len(cyphertext), len(key))]
+  return "".join(map(lambda x : "".join(x), list(zip(*sorted(matrix)))[1:]))
     
     
