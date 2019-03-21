@@ -9,6 +9,9 @@ def main():
     plaintext = SDES.makeDecryption(cyphertext,key)
     print("Cyphertext: "+ cyphertext)
     print("Plaintext: " + plaintext)
+    rk = "231"
+    ptn = "DIDYOUSEE"
+    print(tools.rowTransposition(ptn,rk))
 
 if __name__ == "__main__":
     main()
