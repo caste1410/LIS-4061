@@ -71,11 +71,7 @@ def switch(frOutput):
     return frOutput[len(frOutput)//2:] + frOutput[:len(frOutput)//2]
 
 def rowTransposition(plaintext, key):
-  cols = len(key)
-  alphabet = "abcdefghijklmnopqrstuvwxyz"
-  matrix = [list(plaintext[i:i+cols]) for i in range(0, len(plaintext), cols)]
-  if len(matrix[-1]) != cols:
-    matrix[-1] += list(alphabet[-cols+len(matrix[-1]):])
-  return "".join(map(lambda x : "".join(x[1:]), sorted(zip(key, *matrix))))
+  matrix = list(zip(*[list(plaintext[i:i+len(key)]) for i in range(0, len(plaintext), len(key))]))
+  return "".join(map(lambda x : "".join(matrix[int(x)-1]), key))
     
     
