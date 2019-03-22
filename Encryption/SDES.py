@@ -17,14 +17,4 @@ def makeDecryption(cyphertext,key):
     secondRound = tools.generateFK(switchFR, firstKey)
     plaintext = tools.makePermutation(secondRound,tools.RP)
     return plaintext
-
-def main():
-    key = "1011011010"
-    plainText = "10110110"
-    cyphertext = makeEncrytion(plainText,key)
-    plaintext = makeDecryption(cyphertext,key)
-    print("Cyphertext: "+ cyphertext)
-    print("Plaintext: " + plaintext)
-
-if __name__ == "__main__":
-    main()
+    
