@@ -1,6 +1,7 @@
 import toolsForSDES as tools
 import SDES
 import letterConversion as conversion
+import random
 
 def generateBinaries(lista):
     binaries = []
@@ -64,8 +65,8 @@ def makeDecryption(cyphertext, randomkey, key):
 
 
 def main():
-    key = "0010010111"
-    rk = "231"
+    key = "1000101010"
+    rk = random.choice(tools.rk)
     ptn = "DIDYOUSEE"
     print("Key: ", key)
     print("Random Key: ", rk)
