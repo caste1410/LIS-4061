@@ -70,12 +70,21 @@ def generateFK(permutedPT, key):
 def switch(frOutput):
     return frOutput[len(frOutput)//2:] + frOutput[:len(frOutput)//2]
 
-def rowTransposition(plaintext, key):
+def rowTransposition(plaintext, key, rnd=1):
   matrix = list(zip(*[list(plaintext[i:i+len(key)]) for i in range(0, len(plaintext), len(key))]))
-  return "".join(map(lambda x : "".join(matrix[int(x)-1]), key))
+  matrix = list(map(lambda x : "".join(matrix[int(x)-1]), key))
+  if rnd > 1:
+    matrix = list(map(lambda x : shift(matrix[x], x), range(len(key))))
+  return "".join(matrix)
 
-def rowTranspositionInnverse(cyphertext, key):
+def rowTranspositionInnverse(cyphertext, key, rnd=1):
   matrix = [[key[i//len(key)]] + list(cyphertext[i:i+len(key)]) for i in range(0, len(cyphertext), len(key))]
-  return "".join(map(lambda x : "".join(x), list(zip(*sorted(matrix)))[1:]))
+  if rnd == 1:
+    matrix = list(map(lambda x : [matrix[x][0]] + shift(matrix[x][1:], len(key) -x, "r"), range(len(key))))
+  matrix = list(map(lambda x : "".join(x), list(zip(*sorted(matrix)))[1:]))
+  return "".join(matrix)
+
+def shift(text, shifts):
+  return text[shifts:] + text[:shifts]
     
     
